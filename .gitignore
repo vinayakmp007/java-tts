@@ -74,6 +74,3 @@ crashlytics.properties
 crashlytics-build.properties
 fabric.properties
 
-.gitignor
-lib/
-src/
