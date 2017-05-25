@@ -150,6 +150,7 @@ public class GuiForTTS extends javax.swing.JFrame {
        else if("Stop".equals(jButton1.getText())) {
        mainob.stop();                        //stop is deprecated
        jButton1.setText("Start");
+       jLabel3.setText("Stopped");
        }
        // jLabel3.setText("Completed");
     }//GEN-LAST:event_jButton1ActionPerformed

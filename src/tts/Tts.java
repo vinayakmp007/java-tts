@@ -29,7 +29,7 @@ public class Tts extends Thread{
     }
     
     public void executeWithWait(){
-    
+     caller.setSbutton("Stop");
     Speech b=new Speech(voice);
          long time;
     Engine a=new Engine(input);
@@ -38,7 +38,7 @@ public class Tts extends Thread{
             caller.setStatus("Playing");
             time=b.speak(a.next());
             caller.setStatus("Waiting");
-            java.lang.Thread.sleep(0, ((int) (time/100000))*2);        //waits two time the elapsed time
+            java.lang.Thread.sleep(((int) (time/1000000))*2+1000);        //waits two time the elapsed time
             
         } catch (Exception ex) {
             Logger.getLogger(Tts.class.getName()).log(Level.SEVERE, null, ex);
