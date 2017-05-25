@@ -11,25 +11,30 @@ import com.sun.speech.freetts.VoiceManager;
  * @author vinayak
  */
 public class Speech {
-    
- private static final String VOICENAME_KEVIN = "kevin";
+   private static final String VOICENAME_KEVIN = "kevin";
  
  private String text; // string to speech
- private final String voice_s; //voice name
+ 
  Voice voice;
  VoiceManager voiceManager ;
- public Speech(String voice){
-
- voice_s=voice;
-  }
- public void speak(String text) {
-  
- voiceManager = VoiceManager.getInstance();
-  voice = voiceManager.getVoice("kevin");
+ public Speech(String voices){
+voiceManager = VoiceManager.getInstance();  //make the required hanges here like rate,speed
+  voice = voiceManager.getVoice(voices);
   voice.allocate();
+ 
+  }
+ public long speak(String text) {                  //returns the elapsed time in nano seconds
+  
+/* voiceManager = VoiceManager.getInstance();
+  voice = voiceManager.getVoice("kevin");
+  voice.allocate();*/
   //voice.
-  voice.speak(text);
+     long t1=System.nanoTime();
+       voice.speak(text);
+       long t2=System.nanoTime();
+ return t2-t1;
  }
+ 
  
  
 }
