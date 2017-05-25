@@ -16,8 +16,8 @@ public class Tts {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-    Tts tssob=new Tts();     
-    tssob.executeWithWait("Hello/hai this is/was me/him,when vinayak was/this,also this is/will be (working)","kevin");
+    GuiForTTS.main(args);
+    
     }
     
     public void executeWithWait(String input,String voice){
