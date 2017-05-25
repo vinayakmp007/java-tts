@@ -42,7 +42,9 @@ strings[0]="";
 private String [] makeString(String s){
 String a[]=new String[1];                  //atmost 1 strings
 a[0]="";
-s=s.trim();
+s=s.trim();                                       //trims s
+s=s.replaceAll("\\([A-Za-z0-9]*\\)", "");                     //replace open and close bracket
+System.out.println(s);
 if(s.contains("/"))
 {
 String tem[];
