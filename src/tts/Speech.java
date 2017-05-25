@@ -23,7 +23,7 @@ voiceManager = VoiceManager.getInstance();  //make the required hanges here like
   voice.allocate();
  
   }
- public long speak(String text) {                  //returns the elapsed time in nano seconds
+ public long speak(String text) throws InterruptedException {                  //returns the elapsed time in nano seconds
   
 /* voiceManager = VoiceManager.getInstance();
   voice = voiceManager.getVoice("kevin");
@@ -31,7 +31,9 @@ voiceManager = VoiceManager.getInstance();  //make the required hanges here like
   //voice.
      long t1=System.nanoTime();
        voice.speak(text);
+    
        long t2=System.nanoTime();
+       
  return t2-t1;
  }
  

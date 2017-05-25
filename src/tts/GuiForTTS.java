@@ -19,10 +19,19 @@ public class GuiForTTS extends javax.swing.JFrame {
      */
     public GuiForTTS() {
         initComponents();
-        mainob=new Tts();
+        
         
     }
 
+    public void setStatus(String st){
+    jLabel3.setText(st);
+    
+    }
+    
+    public void setSbutton(String st){
+    jButton1.setText(st);
+    
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -132,9 +141,17 @@ public class GuiForTTS extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        jLabel3.setText("Executing");
-        mainob.executeWithWait(jTextArea1.getText(), "kevin");
-        jLabel3.setText("Completed");
+      //  jLabel3.setText("Executing");
+       if("Start".equals(jButton1.getText())) {mainob=new Tts(jTextArea1.getText(), "kevin",this);
+        mainob.start();
+       
+        
+       }
+       else if("Stop".equals(jButton1.getText())) {
+       mainob.stop();                        //stop is deprecated
+       jButton1.setText("Start");
+       }
+       // jLabel3.setText("Completed");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
