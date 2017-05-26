@@ -142,13 +142,15 @@ public class GuiForTTS extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
       //  jLabel3.setText("Executing");
-       if("Start".equals(jButton1.getText())) {mainob=new Tts(jTextArea1.getText(), "kevin",this);
+       if("Start".equals(jButton1.getText())) {
+           mainob=new Tts(jTextArea1.getText(), "kevin",this);
         mainob.start();
        
         
        }
        else if("Stop".equals(jButton1.getText())) {
-       mainob.stop();                        //stop is deprecated
+       mainob.stop();                        //TODO stop is deprecated try another method
+       
        jButton1.setText("Start");
        jLabel3.setText("Stopped");
        }
