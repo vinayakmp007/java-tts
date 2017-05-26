@@ -29,8 +29,8 @@ for(int i=0;i<size;i++){
 }
     
 public Engine(String s){
-        this.strings = new String[1];
-        
+this.strings = new String[1];
+s=s.replaceAll("\\([^\\^]*\\)", "");  //replace brackets before spliting
 this.convert(s);                               
 this.reset();
 strings[0]="";
@@ -44,7 +44,7 @@ private String [] makeString(String s){
 String a[]=new String[1];                  //atmost 1 strings
 a[0]="";
 s=s.trim();                                       //trims s
-s=s.replaceAll("\\([^\\^]*\\)", "");                     //replace open and close bracket
+s=s.replaceAll("\\([^\\^]*\\)", "");                     //replace open and close bracket (second time)
 System.out.println(s);
 if(s.contains("/"))
 {
