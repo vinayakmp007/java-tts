@@ -11,7 +11,7 @@ import com.sun.speech.freetts.VoiceManager;
  * @author vinayak
  */
 public class Speech {
-   private static final String VOICENAME_KEVIN = "kevin";
+  
  
  private String text; // string to speech
  
@@ -25,10 +25,7 @@ voiceManager = VoiceManager.getInstance();  //make the required hanges here like
   }
  public long speak(String text) throws InterruptedException {                  //returns the elapsed time in nano seconds
   
-/* voiceManager = VoiceManager.getInstance();
-  voice = voiceManager.getVoice("kevin");
-  voice.allocate();*/
-  //voice.
+
      long t1=System.nanoTime();
        voice.speak(text);
     
