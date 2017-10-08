@@ -33,12 +33,23 @@ public class Tts extends Thread{
     Speech b=new Speech(voice);
          long time;
     Engine a=new Engine(input);
+    a.next();
     while(a.hasNext()){
         try {
             caller.setStatus("Playing");
-            time=b.speak(a.next());
-            caller.setStatus("Waiting");
-            java.lang.Thread.sleep(((int) (time/1000000))*2+1000);        //waits two time the elapsed time
+            
+            String sentence = a.next();
+            System.out.println("Sentence:"+sentence);
+            for (int j=0;j<3;j++) {
+                time = 0;
+                String to_Read[] = sentence.split("[+]");
+                for (int i = 0; i < to_Read.length; i++) {
+                    time += b.speak(to_Read[i]);
+                    java.lang.Thread.sleep((int)500);
+                }
+                caller.setStatus("Waiting");
+                java.lang.Thread.sleep(((int) (time/1000000)));        //waits two time the elapsed time
+            }
             
         } catch (Exception ex) {
             Logger.getLogger(Tts.class.getName()).log(Level.SEVERE, null, ex);

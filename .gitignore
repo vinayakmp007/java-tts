@@ -3,6 +3,7 @@
 # Compiled class file
 *.class
 
-build
+build.xml
 manifest.mf
 nbproject/
+/dist/

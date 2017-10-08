@@ -11,118 +11,124 @@ package tts;
  *
  * @author vinayak
  */
-public class Engine {
-protected String strings[];   
-protected int pointer;
-private void convert(String a){
-String sentens[]=a.split("[,.]");                        //Splits the string at comas and fullstops 
-String arr[];
-int size;
 
-size=sentens.length;
-for(int i=0;i<size;i++){
-    //System.out.println(sentens[i]);    
-    arr=makeString(sentens[i]);                //creates the sentences and returns the array of all possible sentences
-    addToStrings(arr);                          //copies all  the strings in array to the queue
-//for(String ar:arr)System.out.println(ar);
-}
-}
-    
-public Engine(String s){
-this.strings = new String[1];
-s=s.replaceAll("\\([^\\^]*\\)", "");  //replace brackets before spliting
-this.convert(s);                               
-this.reset();
-strings[0]="";
-}   
-public Engine(){
-        this.strings = new String[1];
-strings[0]="";
-
-}  
-private String [] makeString(String s){
-String a[]=new String[1];                  //atmost 1 strings
-a[0]="";
-s=s.trim();                                       //trims s
-s=s.replaceAll("\\([^\\^]*\\)", "");                     //replace open and close bracket (second time)
-System.out.println(s);
-if(s.contains("/"))
+public class Engine 
 {
-String tem[];
-tem=s.split(" ");
-for(int i=0;i<tem.length;i++){
-if(!tem[i].contains("/")){
+    protected String strings[];   
+    protected int pointer;
+    
+    private void convert(String a){
+        String sentens[]=a.split("[,.?]");                        //Splits the string at comas and fullstops 
+        String arr[];
+        int size;
 
-    for(int k=0;k<a.length;k++){
-    a[k]=a[k]+" "+tem[i];
-    a[k]=a[k].trim();                   //removes extra space
+        size=sentens.length;
+        for(int i=0;i<size;i++) {
+            //System.out.println(sentens[i]);    
+            arr=makeString(sentens[i]);                //creates the sentences and returns the array of all possible sentences
+            addToStrings(arr);                          //copies all  the strings in array to the queue
+            //for(String ar:arr)System.out.println(ar);
         }
-
-}
-else {
-String words[]=tem[i].split("/");
-String pp[];
-String tem_a[]=new String[a.length*words.length];
-int k=0;
-    for (String word : words) {
-    for (int m=0;m<a.length;m++) {
-     tem_a[k++]=a[m]+" "+word;   
-      
     }
     
-    }
-pp=a;
-a=tem_a;
-}
-
-}
-
-
-
-}
-else a[0]=s;
-return a;
-}
-
-private void addToStrings(String s[]){            //joins the string array to main array
-    String ss[]=new String[strings.length+s.length];
- System.arraycopy(strings, 0, ss,0, strings.length);
- System.arraycopy(s, 0, ss,strings.length, s.length); 
+    public Engine(String s)
+    {
+        this.strings = new String[1];
+        s=s.replaceAll("\\([^\\^]*\\)", "");  //replace brackets before spliting
+        this.convert(s);                               
+        this.reset();
+        strings[0]="";
+    }   
     
-strings=ss;
-}
-public void reset(){
-pointer=0;
-}
+    public Engine()
+    {
+        this.strings = new String[1];
+        strings[0]="";
+    }  
+    
+    private String [] makeString(String s)
+    {
+        String a[]=new String[1];                  //atmost 1 strings
+        a[0]="";
+        s=s.trim();                                       //trims s
+        s=s.replaceAll("\\([^\\^]*\\)", "");                     //replace open and close bracket (second time)
+        System.out.println(s);
+        if(s.contains("/")) {
+            String tem[];
+            tem=s.split(" ");
+            for(int i=0;i<tem.length;i++) {
+                if(!tem[i].contains("/")){
 
-public void setPointer(int a){
-if(a>=0&&a<=strings.length)pointer=a;
-else throw new NullPointerException();
-}
+                    for(int k=0;k<a.length;k++){
+                        a[k]=a[k]+" "+tem[i];
+                        a[k]=a[k].trim();                   //removes extra space
+                    }
+                }
+                else {
+                    String words[]=tem[i].split("/");
+                    String pp[];
+                    String tem_a[]=new String[a.length*words.length];
+                    int k=0;
+                    for (String word : words) {
+                        for (int m=0;m<a.length;m++) {
+                         tem_a[k++]=a[m]+" "+word;   
+                        }
+                    }
+                    pp=a;
+                    a=tem_a;
+                }
+            }
+        }
+        else 
+            a[0]=s;
+        return a;
+    }
 
-public int getPointer(int a){
-return pointer;
-}
+    private void addToStrings(String s[])
+    {            //joins the string array to main array
+        String ss[]=new String[strings.length+s.length];
+        System.arraycopy(strings, 0, ss,0, strings.length);
+        System.arraycopy(s, 0, ss,strings.length, s.length); 
+        strings=ss;
+    }
 
-public boolean hasNext(){
-if(pointer>=strings.length)return false;
-else return true;
-}
+    public void reset()
+    {
+        pointer=0;
+    }
 
-public boolean hasPrev(){
-if(pointer<=0)return false;
-else return true;
-}
-public String next(){
+    public void setPointer(int a)
+    {
+        if(a>=0&&a<=strings.length)pointer=a;
+        else throw new NullPointerException();
+    }
 
-if (hasNext())return strings[pointer++];
-else throw new NullPointerException();
-}
+    public int getPointer(int a)
+    {
+        return pointer;
+    }
 
-public String prev(){
+    public boolean hasNext()
+    {
+        if(pointer>=strings.length)return false;
+        else return true;
+    }
 
-if (hasPrev())return strings[--pointer];
-else throw new NullPointerException();
-}
+    public boolean hasPrev()
+    {
+        if(pointer<=0)return false;
+        else return true;
+    }
+    public String next()
+    {
+        if (hasNext())return strings[pointer++];
+        else throw new NullPointerException();
+    }
+
+    public String prev()
+    {
+        if (hasPrev())return strings[--pointer];
+        else throw new NullPointerException();
+    }
 
 }

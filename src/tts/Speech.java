@@ -30,6 +30,7 @@ voiceManager = VoiceManager.getInstance();  //make the required hanges here like
        voice.speak(text);
     
        long t2=System.nanoTime();
+       System.out.println("Duration:"+(t2-t1));
        
  return t2-t1;
  }
